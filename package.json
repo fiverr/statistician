@@ -1,0 +1,34 @@
+{
+  "name": "statistician",
+  "version": "0.1.0",
+  "description": "Create and compare files stats, and webpack bundle stats",
+  "author": "Fiverr SRE",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fiverr/statistician.git"
+  },
+  "homepage": "https://github.com/fiverr/statistician/",
+  "main": "programs/github-pull-request/index.js",
+  "bin": "index.js",
+  "scripts": {
+    "start": "node index",
+    "test": "find . | grep spec.js | grep -v node_modules | xargs mocha",
+    "lint": "eslint -c .eslintrc '*.js' '**/*.js' --quiet"
+  },
+  "dependencies": {
+    "await-reduce": "^1.2.1",
+    "byte-size": "^4.0.3",
+    "chai": "^4.2.0",
+    "fingerprinting": "^1.0.1",
+    "index-require": "^0.1.0",
+    "node-fetch": "^2.2.0",
+    "webpack-bundle-size-analyzer": "^2.7.0",
+    "yargs": "^12.0.2"
+  },
+  "devDependencies": {
+    "clear-module": "^3.0.0",
+    "eslint": "^5.7.0",
+    "mocha": "^5.2.0"
+  }
+}

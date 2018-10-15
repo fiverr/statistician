@@ -1,0 +1,63 @@
+defaults: &defaults
+	working_directory: ~/app
+	docker:
+		- image: circleci/node:8
+
+version: 2
+jobs:
+	dependencies:
+		<<: *defaults
+		steps:
+			- checkout
+			- restore_cache:
+					key: dependency-cache-{{ checksum "package.json" }}
+			- run:
+					name: Install dependencies
+					command: npm i
+			- save_cache:
+					key: dependency-cache-{{ checksum "package.json" }}
+					paths:
+						- ./node_modules
+	test:
+		<<: *defaults
+		steps:
+			- checkout
+			- restore_cache:
+					key: dependency-cache-{{ checksum "package.json" }}
+			- run:
+					name: Run tests
+					command: npm t
+			- run:
+					name: Code linting
+					command: npm run lint
+	publish:
+		<<: *defaults
+		steps:
+			- checkout
+			- restore_cache:
+					key: dependency-cache-{{ checksum "package.json" }}
+			- run:
+					name: Set npmrc credentials
+					command: echo -e $NPMRC > ~/.npmrc
+			- run:
+					name: Publish to NPM
+					command: npx published
+
+experimental:
+	notify:
+		branches:
+			only:
+				- master
+
+workflows:
+	version: 2
+	delivery:
+		jobs:
+			- dependencies
+			- test:
+					requires:
+						- dependencies
+			- publish:
+					context: org-global
+					requires:
+						- test
