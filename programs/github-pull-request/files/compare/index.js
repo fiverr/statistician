@@ -9,7 +9,9 @@ module.exports = (before, after) => Array.from(
 		...Object.keys(before),
 		...Object.keys(after),
 	])
-).reduce(
+)
+.filter(key => before[key] !== after[key])
+.reduce(
 	(accumulator, key) => Object.assign(
 		accumulator,
 		{

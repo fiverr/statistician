@@ -10,13 +10,13 @@ const after = {
 	'file-b': 15,
 	'file-c': 12,
 };
+const comparison = compare(before, after);
 
 describe('compare', () => {
-	it('Should create the before after object', () => {
-		expect(compare(before, after)).to.deep.equal({
-			'file-a': {before: 10, after: 10},
-			'file-b': {before: 5, after: 15},
-			'file-c': {before: 0, after: 12},
-		});
+	it('Should create the before after for entries', () => {
+		expect(comparison['file-b']).to.deep.equal({before: 5, after: 15});
+	});
+	it('Should omit files that have not changed', () => {
+		expect(comparison).to.have.all.keys(['file-b', 'file-c']);
 	});
 });

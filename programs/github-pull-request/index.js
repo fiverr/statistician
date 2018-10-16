@@ -11,10 +11,22 @@ const comment = require('./comment');
  * @param  {String} options.file
  * @return {Object}
  */
-module.exports = async({token, user, repo, pr, bundle, file}) => await comment({
-	token,
-	user,
-	repo,
-	pr,
-	message: await message({bundle, file}),
-});
+module.exports = async({token, user, repo, pr, bundle, file}) => {
+	if ([token, user, repo, pr].filter(i => !['string', 'number'].includes(typeof i)).length) {
+		throw new Error([
+			'GitHub variables must be strings or numbers.',
+			'Instead got',
+			JSON.stringify({token, user, repo, pr})
+		].join(' '))
+	}
+
+	const msg = await message({bundle, file});
+
+	return await comment({
+		token,
+		user,
+		repo,
+		pr,
+		message: msg,
+	})
+};

@@ -34,6 +34,6 @@ module.exports = async function bundles(stats) {
 				after,
 			)
 		),
-		'> <sup>measured without gzip</sup>',
+		'> <sup>raw sizes</sup>',
 	].join('\n');
 }
