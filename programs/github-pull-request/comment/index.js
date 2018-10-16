@@ -13,8 +13,6 @@ const UNIQUE_IDENTIFIER = Buffer.from(name).toString('base64');
  * @return {Object}
  */
 module.exports = async function comment({token, user, repo, pr, message}) {
-	return message;
-
 	const {request} = new GitHub({token});
 	const comments = await request(
 		path('repos', user, repo, 'issues', pr, 'comments')
