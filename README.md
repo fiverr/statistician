@@ -46,7 +46,7 @@ Outputs JSON
 
 Create pull request (Example using CircleCI env variables)
 ```sh
-npx statistician github-pull-request --file "./files-before.json,./files-after.json" --bundle "./stats-before.json,./stats-after.json" --user $CIRCLE_PROJECT_USERNAME --repo $CIRCLE_PROJECT_REPONAME --pr $CIRCLE_PR_NUMBER --token $GITHUB_TOKEN
+npx statistician github-pull-request --file "./files-before.json,./files-after.json" --bundle "./stats-before.json,./stats-after.json" --user $CIRCLE_PROJECT_USERNAME --repo $CIRCLE_PROJECT_REPONAME --pr $(basename $CIRCLE_PULL_REQUEST) --token $GITHUB_API_TOKEN
 ```
 
 | Option | Meaning | Example
