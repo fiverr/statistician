@@ -22,7 +22,7 @@ module.exports = async function files(stats) {
 	}
 
 	return [
-		'## Files',
+		'## Impacted files',
 		markdown(
 			compare(
 				before,

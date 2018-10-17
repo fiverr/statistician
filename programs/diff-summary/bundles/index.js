@@ -27,7 +27,7 @@ module.exports = async function bundles(stats) {
 	}
 
 	return [
-		'## Modules',
+		'## Impacted modules',
 		markdown(
 			compare(
 				before,

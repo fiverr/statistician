@@ -1,5 +1,5 @@
-const message = require('./message');
-const comment = require('./comment');
+const summary = require('../diff-summary');
+const pr = require('./pr');
 
 /**
  * Create a pull request with the file and bundle stats comparison
@@ -12,7 +12,7 @@ const comment = require('./comment');
  * @return {Object}
  */
 module.exports = async({token, user, repo, pr, bundle, file}) => {
-	if ([token, user, repo, pr].filter(i => !['string', 'number'].includes(typeof i)).length) {
+	if ([token, user, repo, pr].filter(notStringNorNumber).length) {
 		throw new Error([
 			'GitHub variables must be strings or numbers.',
 			'Instead got',
@@ -20,13 +20,20 @@ module.exports = async({token, user, repo, pr, bundle, file}) => {
 		].join(' '))
 	}
 
-	const msg = await message({bundle, file});
+	const message = await summary({bundle, file});
 
-	return await comment({
+	return await pr({
 		token,
 		user,
 		repo,
 		pr,
-		message: msg,
+		message,
 	})
 };
+
+/**
+ * Check if argument is NOT a string or a number
+ * @param  {Any} arg
+ * @return {Boolen}
+ */
+const notStringNorNumber = arg => !['string', 'number'].includes(typeof arg);

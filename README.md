@@ -15,8 +15,8 @@ See [webpack stats API for more details](https://webpack.js.org/api/stats/)
 ---
 
 # `files`
+## Create file stats
 
-Create file stats
 ```sh
 npx statistician files --dir "./dist" --ignore "\.map$" --ignore "(^|\/)\." --ignore "(^|/)node_modules\/," > files.json
 ```
@@ -43,8 +43,9 @@ Outputs JSON
 ---
 
 # `github-pull-request`
+## Create pull request
 
-Create pull request (Example using CircleCI env variables)
+Example using CircleCI env variables
 ```sh
 npx statistician github-pull-request --file "./files-before.json,./files-after.json" --bundle "./stats-before.json,./stats-after.json" --user $CIRCLE_PROJECT_USERNAME --repo $CIRCLE_PROJECT_REPONAME --pr $(basename $CIRCLE_PULL_REQUEST) --token $GITHUB_API_TOKEN
 ```
@@ -61,3 +62,17 @@ npx statistician github-pull-request --file "./files-before.json,./files-after.j
 ## Pull request comment example
 
 ![image](https://user-images.githubusercontent.com/516342/47003941-204c1c00-d139-11e8-86ac-fdec938448de.png)
+
+---
+
+# `diff-summary`
+## Creates the markdown summary
+
+```sh
+npx statistician diff-summary --file "./files-before.json,./files-after.json" --bundle "./stats-before.json,./stats-after.json"
+```
+
+| Option | Meaning | Example
+| - | - | -
+| file | pair of file stats to compare (comma separated) | `--file "./files-before.json,./files-after.json"`
+| bundle | pair of bundle stats to compare (comma separated) | `--file "./files-before.json,./files-after.json"`

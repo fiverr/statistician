@@ -1,5 +1,5 @@
-const bundles = require('../bundles');
-const files = require('../files');
+const bundles = require('./bundles');
+const files = require('./files');
 
 /**
  * Create the markdown for the pull request
@@ -8,15 +8,14 @@ const files = require('../files');
  * @return {String}
  */
 module.exports = async({bundle, file} = {}) => {
-	const result = ['# File sizes impact summary'];
+	const result = [];
 
 	bundle && result.push(await bundles(bundle));
 	file && result.push(await files(file));
 
+	result.unshift(
+		result.length ? '# File sizes impact summary' : 'No file size impact detected'
+	);
+
 	return result.join('\n');
 };
-
-
-
-
-
