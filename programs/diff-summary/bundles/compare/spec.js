@@ -13,6 +13,10 @@ const before = {
 		something: 10000,
 		__TOTAL_SIZE__: 30000,
 	},
+	'module-c': {
+		self: 10000,
+		__TOTAL_SIZE__: 10000,
+	},
 };
 const after = {
 	'module-a': {
@@ -21,22 +25,25 @@ const after = {
 		'something-else': 3000,
 		__TOTAL_SIZE__: 28000,
 	},
+	'module-c': {
+		self: 10000,
+		__TOTAL_SIZE__: 10000,
+	},
 };
-const results = compare(before, after);
 
 describe('compare', () => {
+	const results = compare(before, after);
+
 	it('Should create the before after object', () => {
-		expect(results).to.deep.equal({
-			'module-a': {
-				self: { before: 10000, after: 15000 },
-				something: { before: 5000, after: 10000 },
-				'something-else': { before: 3000, after: 3000 },
-			},
-			'module-b': {
-				self: { before: 20000, after: 0 },
-				something: { before: 10000, after: 0 },
-			},
-		});
+		expect(results['module-a']['self']).to.deep.equal({before: 10000, after: 15000});
+		expect(results['module-a'].something).to.deep.equal({before: 5000, after: 10000});
+		expect(results['module-b'].something).to.deep.equal({before: 10000, after: 0});
+	});
+	it('Should omit un changed modules', () => {
+		expect(results['module-a']).to.not.have.keys(['something-else']);
+	});
+	it('Should omit un changed dependencies', () => {
+		expect(results).to.not.have.keys(['module-c']);
 	});
 	it('Should have a __TOTAL_SIZE__ poperty', () => {
 		expect(results['module-a'].__TOTAL_SIZE__.before).to.be.a('number');

@@ -1,7 +1,9 @@
-const {expect} = require('chai');
 const compare = require('./compare');
 const markdown = require('./markdown');
-const {getJSON} = require('../../../lib');
+const {
+	deepEqual,
+	getJSON,
+} = require('../../../lib');
 
 /**
  * Create the markdown section for files
@@ -15,9 +17,7 @@ module.exports = async function files(stats) {
 		.map(stat => getJSON(stat))
 	);
 
-	try {
-		expect(before).to.not.deep.equal(after);
-	} catch (error) {
+	if (deepEqual(before, after)) {
 		return 'Files unchanged';
 	}
 

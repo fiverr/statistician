@@ -1,5 +1,5 @@
 const summary = require('../diff-summary');
-const pr = require('./pr');
+const pull = require('./pull');
 
 /**
  * Create a pull request with the file and bundle stats comparison
@@ -22,7 +22,7 @@ module.exports = async({token, user, repo, pr, bundle, file}) => {
 
 	const message = await summary({bundle, file});
 
-	return await pr({
+	return await pull({
 		token,
 		user,
 		repo,

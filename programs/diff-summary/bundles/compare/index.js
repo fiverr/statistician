@@ -1,3 +1,5 @@
+const deepEqual = require('../../../../lib/deepEqual');
+
 /**
  * Create a comparison of two webpack stats
  * @param  {Object} before Webpack stats
@@ -10,10 +12,17 @@ module.exports = (before, after) => Array.from(
 		...Object.keys(after),
 	])
 ).reduce(
-	(accumulator, name) => Object.assign(
-		accumulator,
-		{[name]: modul(before[name], after[name])}
-	),
+	(accumulator, name) =>
+
+		// Omit un impacted modules
+		deepEqual(before[name], after[name])
+		?
+		accumulator
+		:
+		Object.assign(
+			accumulator,
+			{[name]: modul(before[name], after[name])}
+		),
 	{}
 );
 
@@ -29,16 +38,25 @@ const modul = (before = {}, after = {}) => Object.defineProperty(
 			...Object.keys(before),
 			...Object.keys(after),
 		])
-	).reduce(
-		(accumulator, dependency) => Object.assign(
-			accumulator,
-			{
-				[dependency]: {
-					before: before[dependency] || 0,
-					after: after[dependency] || 0,
-				},
-			}
-		),
+	)
+	.reduce(
+		(accumulator, dependency) =>
+
+			// Omit un impacted dependencies
+			sizeEqual(before[dependency], after[dependency])
+			?
+			accumulator
+			:
+			Object.assign(
+				accumulator,
+				{
+					[dependency]: {
+						before: before[dependency] || 0,
+						after: after[dependency] || 0,
+					},
+				}
+			)
+			,
 		{}
 	),
 	'__TOTAL_SIZE__', // Defining '__TOTAL_SIZE__' as a Non enumerable property
@@ -51,3 +69,5 @@ const modul = (before = {}, after = {}) => Object.defineProperty(
 	}
 );
 
+
+const sizeEqual = (a, b) => (a.size && b.size) && (a.size === b.size);

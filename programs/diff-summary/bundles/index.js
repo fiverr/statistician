@@ -1,7 +1,7 @@
-const {expect} = require('chai');
 const compare = require('./compare');
 const markdown = require('./markdown');
 const {
+	deepEqual,
 	getJSON,
 	summarise,
 } = require('../../../lib');
@@ -20,9 +20,7 @@ module.exports = async function bundles(stats) {
 		)
 	).map(summarise);
 
-	try {
-		expect(before).to.not.deep.equal(after);
-	} catch (error) {
+	if (deepEqual(before, after)) {
 		return 'Modules unchanged';
 	}
 

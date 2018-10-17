@@ -17,15 +17,13 @@ process.on('unhandledRejection', console.error); // eslint-disable-line no-conso
  */
 (async() => {
 	try {
-		const {
-			_: [first],
-		} = argv;
+		const {_: [prog]} = argv;
 
-		const program = require(`./programs/${first}`);
+		const program = require(`./programs/${prog}`);
 		const result = await program(argv);
 
 		console.log( // eslint-disable-line no-console
-			JSON_OUTPUT.includes(first)
+			JSON_OUTPUT.includes(prog)
 				?
 				JSON.stringify(result, null, 2)
 				:
