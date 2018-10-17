@@ -61,7 +61,7 @@ npx statistician github-pull-request --file "./files-before.json,./files-after.j
 
 ## Pull request comment example
 
-![image](https://user-images.githubusercontent.com/516342/47003941-204c1c00-d139-11e8-86ac-fdec938448de.png)
+<img src="https://user-images.githubusercontent.com/516342/47106363-03a20800-d24f-11e8-9c3c-ec89546c6975.png" width="780">
 
 ---
 
