@@ -15,7 +15,7 @@ module.exports = data => sort(Object.entries(data))
 	.reduce(
 		(rows, [key, {before, after}]) => [
 			...rows,
-			[key, byteSize(before), byteSize(after), diff(before, after)]
+			[key, byteSize(before), byteSize(after), diff(before, after)],
 		],
 		[
 			['File', 'Before', 'After', 'Diff'],

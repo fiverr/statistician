@@ -17,8 +17,8 @@ module.exports = (before, after) => Array.from(
 		{
 			[key]: {
 				before: before[key] || 0,
-				after: after[key] || 0
-			}
+				after: after[key] || 0,
+			},
 		}
 	),
 	{}

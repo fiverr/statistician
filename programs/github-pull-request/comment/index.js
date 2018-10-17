@@ -32,8 +32,8 @@ module.exports = async function comment({token, user, repo, pr, message}) {
 				body: [
 					`<!-- ${UNIQUE_IDENTIFIER} -->`,
 					message,
-				].join('\n')
-			})
+				].join('\n'),
+			}),
 		}
 	);
 }

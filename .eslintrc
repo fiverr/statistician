@@ -15,7 +15,10 @@
   "extends": [
     "eslint:recommended"
   ],
-  "rules": {},
+  "rules": {
+    "arrow-parens": [2, "as-needed"],
+    "comma-dangle": ["error", "always-multiline"]
+  },
   "overrides": [
     {
       "files": [ "**/spec.js" ],

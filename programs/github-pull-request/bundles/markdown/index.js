@@ -31,7 +31,7 @@ module.exports = stats => Object.entries(stats)
 								`${byteSize(before.size)} (${before.percent}%)`,
 								`${byteSize(after.size)} (${after.percent}%)`,
 								sizeDiff(before.size - after.size),
-							]
+							],
 						],
 						[
 							[...new Array(4).fill('-')],

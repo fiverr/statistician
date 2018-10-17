@@ -16,7 +16,7 @@ module.exports = async({token, user, repo, pr, bundle, file}) => {
 		throw new Error([
 			'GitHub variables must be strings or numbers.',
 			'Instead got',
-			JSON.stringify({token, user, repo, pr})
+			JSON.stringify({token, user, repo, pr}),
 		].join(' '))
 	}
 

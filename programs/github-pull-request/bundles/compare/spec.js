@@ -20,7 +20,7 @@ const after = {
 		something: 10000,
 		'something-else': 3000,
 		__TOTAL_SIZE__: 28000,
-	}
+	},
 };
 const results = compare(before, after);
 
@@ -35,7 +35,7 @@ describe('compare', () => {
 			'module-b': {
 				self: { before: 20000, after: 0 },
 				something: { before: 10000, after: 0 },
-			}
+			},
 		});
 	});
 	it('Should have a __TOTAL_SIZE__ poperty', () => {

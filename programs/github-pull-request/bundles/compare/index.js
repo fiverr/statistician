@@ -36,7 +36,7 @@ const modul = (before = {}, after = {}) => Object.defineProperty(
 				[dependency]: {
 					before: before[dependency] || 0,
 					after: after[dependency] || 0,
-				}
+				},
 			}
 		),
 		{}
