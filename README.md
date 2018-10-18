@@ -75,4 +75,19 @@ npx statistician diff-summary --file "./files-before.json,./files-after.json" --
 | Option | Meaning | Example
 | - | - | -
 | file | pair of file stats to compare (comma separated) | `--file "./files-before.json,./files-after.json"`
-| bundle | pair of bundle stats to compare (comma separated) | `--file "./files-before.json,./files-after.json"`
+| bundle | pair of bundle stats to compare (comma separated) | `--bundle "./stats-before.json,./stats-after.json"`
+
+---
+
+# `summary`
+## Creates a markdown summary of all the information
+
+```sh
+npx statistician diff-summary --file "./files.json" --bundle "./stats.json" [--html]
+```
+
+| Option | Meaning | Example
+| - | - | -
+| file | file stats | `--file "./files.json"`
+| bundle | bundle stats | `--bundle "./stats-after.json"`
+| html | output in HTML | `--html`

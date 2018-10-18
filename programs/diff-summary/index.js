@@ -1,3 +1,5 @@
+const {promisify} = require('util');
+const marked = promisify(require('marked'));
 const bundles = require('./bundles');
 const files = require('./files');
 
@@ -7,7 +9,7 @@ const files = require('./files');
  * @param  {String} [options.files]   Two file routes separated by comma
  * @return {String}
  */
-module.exports = async({bundle, file} = {}) => {
+module.exports = async({bundle, file, html} = {}) => {
 	const result = [];
 
 	bundle && result.push(await bundles(bundle));
@@ -17,5 +19,8 @@ module.exports = async({bundle, file} = {}) => {
 		result.length ? '# File sizes impact summary' : 'No file size impact detected'
 	);
 
-	return result.join('\n');
+
+	const output = result.join('\n');
+
+	return html ? (await marked(output.replace('<', '&lt;'), {})).trim() : output;
 };
