@@ -1,6 +1,6 @@
 {
   "name": "statistician",
-  "version": "0.3.1",
+  "version": "0.3.3",
   "description": "Create and compare files stats, and webpack bundle stats",
   "author": "Fiverr SRE",
   "license": "MIT",
@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "await-reduce": "^1.2.1",
-    "byte-size": "^4.0.3",
+    "byte-size": "^4.0.4",
     "chai": "^4.2.0",
     "fingerprinting": "^1.0.1",
     "index-require": "^0.1.0",
