@@ -3,7 +3,6 @@ const {
 	esc,
 	percent,
 	row,
-	sizeDiff,
 	sortBy,
 	unshift,
 } = require('../../../../lib');
@@ -30,7 +29,7 @@ module.exports = stats => Object.entries(stats)
 								name,
 								`${byteSize(before.size)} (${before.percent}%)`,
 								`${byteSize(after.size)} (${after.percent}%)`,
-								sizeDiff(before.size - after.size),
+								byteSize(before.size - after.size),
 							],
 						],
 						[
