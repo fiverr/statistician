@@ -2,7 +2,6 @@ const compare = require('./compare');
 const markdown = require('./markdown');
 const {
 	deepEqual,
-	getJSON,
 	summarise,
 } = require('../../../lib');
 
@@ -12,13 +11,7 @@ const {
  * @return {String}
  */
 module.exports = async function bundles(stats) {
-	const [before, after] = (
-		await Promise.all(
-			stats
-			.split(',')
-			.map(stat => getJSON(stat))
-		)
-	).map(summarise);
+	const [before, after] = stats.map(summarise);
 
 	if (deepEqual(before, after)) {
 		return 'Modules unchanged';

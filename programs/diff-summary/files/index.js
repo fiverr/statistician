@@ -2,7 +2,6 @@ const compare = require('./compare');
 const markdown = require('./markdown');
 const {
 	deepEqual,
-	getJSON,
 } = require('../../../lib');
 
 /**
@@ -10,13 +9,7 @@ const {
  * @param  {String} files
  * @return {String}
  */
-module.exports = async function files(stats) {
-	const [before, after] = await Promise.all(
-		stats
-		.split(',')
-		.map(stat => getJSON(stat))
-	);
-
+module.exports = async function files([before, after]) {
 	if (deepEqual(before, after)) {
 		return 'Files unchanged';
 	}

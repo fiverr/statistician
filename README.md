@@ -83,7 +83,7 @@ npx statistician diff-summary --file "./files-before.json,./files-after.json" --
 ## Creates a markdown summary of all the information
 
 ```sh
-npx statistician diff-summary --file "./files.json" --bundle "./stats.json" [--html]
+npx statistician summary --file "./files.json" --bundle "./stats.json" [--html]
 ```
 
 | Option | Meaning | Example

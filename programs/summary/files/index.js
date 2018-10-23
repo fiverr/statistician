@@ -1,6 +1,5 @@
 const byteSize = require('byte-size');
 const {
-	getJSON,
 	row,
 	sortBy,
 } = require('../../../lib');
@@ -11,7 +10,7 @@ const {
  * @return {String}
  */
 module.exports = async data => sortBy(
-		Object.entries(await getJSON(data)),
+		Object.entries(data),
 		([, size]) => size,
 		{order: 'desc'}
 	)

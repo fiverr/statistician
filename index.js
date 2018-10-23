@@ -19,7 +19,7 @@ process.on('unhandledRejection', console.error); // eslint-disable-line no-conso
 	try {
 		const {_: [prog]} = argv;
 
-		const program = require(`./programs/${prog}`);
+		const program = require(`./programs/${prog}/cli`);
 		const result = await program(argv);
 
 		console.log( // eslint-disable-line no-console

@@ -5,8 +5,8 @@ const files = require('./files');
 
 /**
  * Create the markdown for the pull request
- * @param  {String} [options.bundle] Two file routes separated by comma
- * @param  {String} [options.files]   Two file routes separated by comma
+ * @param  {Array} [options.bundle] Two objects (before, after)
+ * @param  {Array} [options.files]  Two objects (before, after)
  * @return {String}
  */
 module.exports = async({bundle, file, html} = {}) => {

@@ -1,4 +1,4 @@
-const summary = require('../diff-summary');
+const diffSummary = require('../diff-summary');
 const pull = require('./pull');
 
 /**
@@ -7,8 +7,8 @@ const pull = require('./pull');
  * @param  {String} options.user
  * @param  {String} options.repo
  * @param  {String} options.pr
- * @param  {String} options.bundle
- * @param  {String} options.file
+ * @param  {Array} options.bundle Two objects (before, after)
+ * @param  {Array} options.file   Two objects (before, after)
  * @return {Object}
  */
 module.exports = async({token, user, repo, pr, bundle, file}) => {
@@ -20,7 +20,7 @@ module.exports = async({token, user, repo, pr, bundle, file}) => {
 		].join(' '))
 	}
 
-	const message = await summary({bundle, file});
+	const message = await diffSummary({bundle, file});
 
 	return await pull({
 		token,

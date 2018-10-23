@@ -3,6 +3,13 @@ const marked = promisify(require('marked'));
 const bundles = require('./bundles');
 const files = require('./files');
 
+/**
+ * Create a document summarises files and bundles stats
+ * @param  {Object}  [options.file]
+ * @param  {Object}  [options.bundle]
+ * @param  {Boolean} [options.html]
+ * @return {String}
+ */
 module.exports = async({file, bundle, html}) => {
 	const result = [];
 

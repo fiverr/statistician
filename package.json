@@ -1,6 +1,6 @@
 {
   "name": "statistician",
-  "version": "0.3.3",
+  "version": "0.4.0",
   "description": "Create and compare files stats, and webpack bundle stats",
   "author": "Fiverr SRE",
   "license": "MIT",
@@ -9,7 +9,7 @@
     "url": "git+https://github.com/fiverr/statistician.git"
   },
   "homepage": "https://github.com/fiverr/statistician/",
-  "main": "programs/github-pull-request/index.js",
+  "main": "programs/index.js",
   "bin": "index.js",
   "scripts": {
     "start": "node index",

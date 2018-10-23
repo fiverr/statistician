@@ -1,7 +1,6 @@
 const byteSize = require('byte-size');
 const {
 	esc,
-	getJSON,
 	summarise,
 	sortBy,
 	row,
@@ -13,7 +12,7 @@ const {
  * @return {String}
  */
 module.exports = async function bundles(stats) {
-	return Object.entries(summarise(await getJSON(stats)))
+	return Object.entries(summarise(stats))
 		.reduce(
 			(accumulator, [modul, dependencies]) => [
 				...accumulator,
