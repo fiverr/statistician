@@ -5,6 +5,9 @@ const {
 	summarise,
 } = require('../../../lib');
 
+const NO_CHANGES = 'Modules unchanged';
+const INSIGNIFICANT = 'No significant modules changes';
+
 /**
  * Create the markdown section for bundles
  * @param  {String} stats
@@ -14,17 +17,24 @@ module.exports = async function bundles(stats) {
 	const [before, after] = stats.map(summarise);
 
 	if (deepEqual(before, after)) {
-		return 'Modules unchanged';
+		return NO_CHANGES;
 	}
+
+	const body = markdown(
+		compare(
+			before,
+			after,
+		)
+	);
+
+	if (body.length === 0) {
+		return INSIGNIFICANT;
+	}
+
 
 	return [
 		'## Impacted modules',
-		markdown(
-			compare(
-				before,
-				after,
-			)
-		),
+		body.join('\n\n'),
 		'> <sup>raw sizes</sup>',
 	].join('\n');
 }
