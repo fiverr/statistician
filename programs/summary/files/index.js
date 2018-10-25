@@ -1,8 +1,6 @@
 const byteSize = require('byte-size');
-const {
-	row,
-	sortBy,
-} = require('../../../lib');
+const row = require('../../../lib/row');
+const sortBy = require('../../../lib/sortBy');
 
 /**
  * Output file sizes diff in markdown

@@ -1,5 +1,5 @@
 const {join} = require('path');
-const {GitHub} = require('../../../lib');
+const GitHub = require('../../../lib/GitHub');
 const {name} = require('../../../package.json');
 const UNIQUE_IDENTIFIER = Buffer.from(name).toString('base64');
 

@@ -1,36 +1,16 @@
 const {extname} = require('path');
-const byteSize = require('byte-size');
-const {
-	diff,
-	row,
-	sortBy,
-} = require('../../../../lib');
+const row = require('../../../../lib/row');
+const sortBy = require('../../../../lib/sortBy');
+const reducer = require('./reducer');
+const header = ['File', 'Before', 'After', 'Diff'];
 
 /**
  * Output file sizes diff in markdown
  * @param  {Object} data File sizes diff structure
  * @return {String} markdown
  */
-module.exports = data => sort(Object.entries(data))
-	.reduce(
-		(rows, [key, {before, after}]) => [
-			...rows,
-			[key, byteSize(before), byteSize(after), diff(before, after)],
-		],
-		[
-			['File', 'Before', 'After', 'Diff'],
-			[...new Array(4).fill('-')],
-		]
-	)
-	.map(row)
-	.join('\n');
-
-/**
- * Sort entries by size (desc) and then by file type
- * @param  {Object} entries
- * @return {Object}
- */
-function sort(entries) {
+module.exports = data => {
+	let entries = Object.entries(data);
 	entries = sortBy(
 		entries,
 		([, i]) => i.before,
@@ -40,5 +20,17 @@ function sort(entries) {
 		entries,
 		([i]) => extname(i).replace('.', '')
 	);
-	return entries;
-}
+
+	const body = entries.reduce(reducer, []);
+
+	if (!body.length) {
+		return '';
+	}
+
+	return [
+		header,
+		new Array(header.length).fill('-'),
+		...body,
+	].map(row)
+	.join('\n');
+};
