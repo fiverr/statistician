@@ -1,5 +1,5 @@
 const program = require('.');
-const {getJSON} = require('../../lib');
+const getJSON = require('../../lib/getJSON');
 
 /**
  * Create a document summarises files and bundles stats

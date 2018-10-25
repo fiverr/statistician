@@ -1,10 +1,8 @@
 const byteSize = require('byte-size');
-const {
-	esc,
-	summarise,
-	sortBy,
-	row,
-} = require('../../../lib');
+const esc = require('../../../lib/esc');
+const summarise = require('../../../lib/summarise');
+const sortBy = require('../../../lib/sortBy');
+const row = require('../../../lib/row');
 
 /**
  * Create the markdown section for bundles

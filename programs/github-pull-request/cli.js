@@ -1,5 +1,5 @@
 const program = require('.');
-const {getJSON} = require('../../lib');
+const getJSON = require('../../lib/getJSON');
 
 /**
  * Create a pull request with the file and bundle stats comparison

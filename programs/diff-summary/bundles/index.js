@@ -1,9 +1,7 @@
 const compare = require('./compare');
 const markdown = require('./markdown');
-const {
-	deepEqual,
-	summarise,
-} = require('../../../lib');
+const deepEqual = require('../../../lib/deepEqual');
+const summarise = require('../../../lib/summarise');
 
 const NO_CHANGES = 'Modules unchanged';
 const INSIGNIFICANT = 'No significant modules changes';

@@ -1,5 +1,5 @@
 const program = require('.');
-const {getJSON} = require('../../lib');
+const getJSON = require('../../lib/getJSON');
 
 /**
  * Create the markdown for the pull request

@@ -1,8 +1,6 @@
 const compare = require('./compare');
 const markdown = require('./markdown');
-const {
-	deepEqual,
-} = require('../../../lib');
+const deepEqual = require('../../../lib/deepEqual');
 
 const NO_CHANGES = 'Files unchanged';
 const INSIGNIFICANT = 'No significant file changes';

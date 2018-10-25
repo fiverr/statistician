@@ -1,8 +1,6 @@
 const {extname} = require('path');
-const {
-	row,
-	sortBy,
-} = require('../../../../lib');
+const row = require('../../../../lib/row');
+const sortBy = require('../../../../lib/sortBy');
 const reducer = require('./reducer');
 const header = ['File', 'Before', 'After', 'Diff'];
 
