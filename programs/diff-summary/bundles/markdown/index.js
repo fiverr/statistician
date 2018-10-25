@@ -29,7 +29,7 @@ function reducer(accumulator, [name, data]) {
 		'Module',
 		`Before (${byteSize(data.__TOTAL_SIZE__.before)})`,
 		`After (${byteSize(data.__TOTAL_SIZE__.after)})`,
-		`Diff (${difference}%)`,
+		`Diff (${difference > 0 ? '+' : ''}${difference}%)`,
 	];
 
 	const body = sortBy(
