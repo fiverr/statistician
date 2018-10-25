@@ -1,4 +1,3 @@
-const {expect} = require('chai');
 const reducer = require('.');
 
 describe('reducer', () => {

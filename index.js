@@ -1,47 +1,17 @@
-#!/usr/bin/env node
-
-/* eslint no-console: 0 */
-
-const {argv} = require('yargs');
-const {name, version} = require('./package.json');
+/**
+ * diffSummary
+ * @description Create markdown summary of file sizes and bundle diffs
+ */
+module.exports.diffSummary = require('./programs/diff-summary');
 
 /**
- * Program names which output is required in JSON
- * @type {String[]}
+ * githubPullRequest
+ * @description Comment on a pull request with the results of diffSummary
  */
-const JSON_OUTPUT = [
-	'files',
-];
-
-process.on('unhandledRejection', console.error);
+module.exports.githubPullRequest = require('./programs/github-pull-request');
 
 /**
- * Entry point of CLI application
+ * summary
+ * @description Create markdown summary of file sizes and bundle
  */
-(async() => {
-	try {
-
-		const {_: [prog]} = argv;
-
-		if (argv.v || argv.version) {
-			console.log(name, version);
-			return;
-		}
-
-		const program = require(`./programs/${prog}/cli`);
-		const result = await program(argv);
-
-		console.log(
-			JSON_OUTPUT.includes(prog)
-				?
-				JSON.stringify(result, null, 2)
-				:
-				result
-		);
-	} catch (error) {
-		console.error(error);
-		process.exit(1);
-	}
-})();
-
-
+module.exports.summary = require('./programs/summary');

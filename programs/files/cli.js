@@ -16,7 +16,12 @@ const {
 module.exports = async function files({
 	dir = './',
 	ignore,
+	base,
 } = {}) {
+	base = base || dir;
+	const rembase = new RegExp(`^(\.\/)?${base.replace(/^\.?\//, '')}\/?`);
+	console.log(rembase);
+
 	ignore = ignoreRules(ignore);
 
 	return await reduce(
@@ -36,14 +41,14 @@ module.exports = async function files({
 			if (stats.isDirectory()) {
 				Object.assign(
 					accumulator,
-					await files({dir: path, ignore})
+					await files({dir: path, ignore, base})
 				);
 			} else if (stats.isFile()) {
 				const name = await removeFingerprint(path);
 				const size = await gzipSize(path);
 				Object.assign(
 					accumulator,
-					{[name]: size}
+					{[name.replace(rembase, '')]: size}
 				);
 			}
 

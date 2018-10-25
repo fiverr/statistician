@@ -1,4 +1,3 @@
-const {expect} = require('chai');
 const compare = require('.');
 
 const before = {
