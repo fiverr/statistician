@@ -20,9 +20,13 @@ process.on('unhandledRejection', console.error);
  */
 (async() => {
 	try {
-		console.log(name, version);
 
 		const {_: [prog]} = argv;
+
+		if (argv.v || argv.version) {
+			console.log(name, version);
+			return;
+		}
 
 		const program = require(`./programs/${prog}/cli`);
 		const result = await program(argv);

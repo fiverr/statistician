@@ -10,7 +10,7 @@ const getJSON = require('../../lib/getJSON');
 module.exports = async({bundle, file, html} = {}) => program({
 
 	// before, after
-	bundle: await Promise.all(
+	bundle: bundle && await Promise.all(
 		bundle
 			.split(',')
 			.map(
@@ -19,7 +19,7 @@ module.exports = async({bundle, file, html} = {}) => program({
 	),
 
 	// before, after
-	file: await Promise.all(
+	file: file && await Promise.all(
 		file
 			.split(',')
 			.map(
