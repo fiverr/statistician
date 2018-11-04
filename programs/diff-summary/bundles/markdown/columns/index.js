@@ -29,5 +29,5 @@ module.exports = function columns(accumulator, [name, {before, after}]) {
 
 const cell = ({size, percent}) => [
 	size ? byteSize(size) : '0',
-	percent ? `(${percent}%)` : ''
+	percent ? `(${percent}%)` : '',
 ].join(' ');
