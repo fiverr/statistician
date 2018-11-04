@@ -51,8 +51,8 @@ const modul = (before = {}, after = {}) => Object.defineProperty(
 				accumulator,
 				{
 					[dependency]: {
-						before: before[dependency] || 0,
-						after: after[dependency] || 0,
+						before: size(before[dependency]),
+						after: size(after[dependency]),
 					},
 				}
 			)
@@ -69,5 +69,6 @@ const modul = (before = {}, after = {}) => Object.defineProperty(
 	}
 );
 
+const sizeEqual = (a, b) => (a && b) && (a.size && b.size) && (a.size === b.size);
 
-const sizeEqual = (a, b) => (a.size && b.size) && (a.size === b.size);
+const size = dependency => !Number.isNaN(dependency) && dependency || 0;
