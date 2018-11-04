@@ -1,6 +1,6 @@
 {
   "name": "statistician",
-  "version": "0.4.4",
+  "version": "0.4.7",
   "description": "Create and compare files stats, and webpack bundle stats",
   "author": "Fiverr SRE",
   "license": "MIT",

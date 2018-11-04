@@ -20,9 +20,14 @@ module.exports = function columns(accumulator, [name, {before, after}]) {
 		...accumulator,
 		[
 			name,
-			`${byteSize(before.size)} (${before.percent}%)`,
-			`${byteSize(after.size)} (${after.percent}%)`,
+			cell(before),
+			cell(after),
 			difference,
 		],
 	];
 }
+
+const cell = ({size, percent}) => [
+	size ? byteSize(size) : '0',
+	percent ? `(${percent}%)` : ''
+].join(' ');
