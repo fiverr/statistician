@@ -70,4 +70,4 @@ const modul = (before = {}, after = {}) => Object.defineProperty(
 );
 
 
-const sizeEqual = (a, b) => (a.size && b.size) && (a.size === b.size);
+const sizeEqual = (a, b) => (a && b) && (a.size && b.size) && (a.size === b.size);
