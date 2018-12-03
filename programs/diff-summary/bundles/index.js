@@ -1,6 +1,6 @@
 const chunkalyse = require('chunkalyse');
 const byteSize = require('byte-size');
-const diff = require('./diff');
+const diff = require('../../../lib/diff');
 const entry = require('./entry');
 const deepEqual = require('../../../lib/deepEqual');
 const row = require('../../../lib/row');
@@ -42,7 +42,7 @@ const compare = (before, after) => keys(before, after).reduce(
 			'Module',
 			`Before (${byteSize(before[name].size)})`,
 			`After (${byteSize(after[name].size)})`,
-			diff(before[name], after[name])
+			diff(before[name].size, after[name].size),
 		]),
 		row([...new Array(4).fill('-')]),
 		...modules(before[name], after[name]),
@@ -56,7 +56,7 @@ const modules = (before, after) => keys(before.modules, after.modules).reduce(
 
 		if (a.size === b.size) { return accumulator; }
 
-		const difference = diff(a, b);
+		const difference = diff(a.size, b.size);
 
 		if (!difference) { return accumulator; }
 
@@ -66,3 +66,5 @@ const modules = (before, after) => keys(before.modules, after.modules).reduce(
 	},
 	[]
 );
+
+const entry = ({size, percent}) => size === 0 ? '0' : `${byteSize(size)} (${percent}%)`;

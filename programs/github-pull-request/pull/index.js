@@ -14,7 +14,7 @@ const UNIQUE_IDENTIFIER = Buffer.from(name).toString('base64');
  */
 module.exports = async function pull({token, user, repo, pr, message}) {
 	const {request} = new GitHub({token});
-	if (typeof pr === true) { // `true` from yargs means an empty value (--pr --message "some message")
+	if (pr === true) { // `true` from yargs means an empty value (--pr --message "some message")
 		throw new Error('Pull-request entity is not available. I have nowhere to comment my findings ☹️');
 	}
 

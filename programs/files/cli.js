@@ -19,7 +19,7 @@ module.exports = async function files({
 	base,
 } = {}) {
 	base = base || dir;
-	const rembase = new RegExp(`^(\.\/)?${base.replace(/^\.?\//, '')}\/?`);
+	const rembase = new RegExp(`^(./)?${base.replace(/^\.?\//, '')}/?`);
 	console.log(rembase);
 
 	ignore = ignoreRules(ignore);
