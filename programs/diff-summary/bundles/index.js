@@ -38,9 +38,9 @@ const compare = (before, after) => keys(before, after).reduce(
 		`### ${name}`,
 		row([
 			'Module',
-			`Before (${byteSize(before[name].size)})`,
-			`After (${byteSize(after[name].size)})`,
-			diff(before[name].size, after[name].size),
+			`Before (${byteSize(getSize(before[name]))})`,
+			`After (${byteSize(getSize(after[name]))})`,
+			diff(getSize(before[name]), getSize(after[name])),
 		]),
 		row([...new Array(4).fill('-')]),
 		...modules(before[name], after[name]),
@@ -48,7 +48,9 @@ const compare = (before, after) => keys(before, after).reduce(
 	[]
 );
 
-const modules = ({modules: before}, {modules: after}) => keys(before, after).reduce(
+const getSize = entry => entry ? entry.size : 0;
+
+const modules = (before = {modules: {}}, after = {modules: {}}) => keys(before.modules, after.modules).reduce(
 	(accumulator, name) => {
 		const [a, b] = [before, after].map(i => i.modules[name] || {size: 0});
 

@@ -34,7 +34,7 @@
     "await-reduce": "^1.2.1",
     "byte-size": "^4.0.4",
     "chai": "^4.2.0",
-    "chunkalyse": "0.0.3",
+    "chunkalyse": "0.0.5",
     "fingerprinting": "^1.0.1",
     "index-require": "^0.1.0",
     "marked": "^0.5.1",
