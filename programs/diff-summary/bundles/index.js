@@ -1,7 +1,6 @@
 const chunkalyse = require('chunkalyse');
 const byteSize = require('byte-size');
 const diff = require('../../../lib/diff');
-const entry = require('./entry');
 const deepEqual = require('../../../lib/deepEqual');
 const row = require('../../../lib/row');
 const keys = require('../../../lib/keys');
@@ -27,7 +26,6 @@ module.exports = async function bundles(stats) {
 		return INSIGNIFICANT;
 	}
 
-
 	return [
 		'## Impacted modules',
 		body.join('\n'),
@@ -50,7 +48,7 @@ const compare = (before, after) => keys(before, after).reduce(
 	[]
 );
 
-const modules = (before, after) => keys(before.modules, after.modules).reduce(
+const modules = ({modules: before}, {modules: after}) => keys(before, after).reduce(
 	(accumulator, name) => {
 		const [a, b] = [before, after].map(i => i.modules[name] || {size: 0});
 
