@@ -22,6 +22,10 @@ module.exports = async({token, user, repo, pr, bundle, file}) => {
 
 	const message = await diffSummary({bundle, file});
 
+	if (pr === true) { // `true` from yargs means an empty value (--pr --message "some message")
+		throw new Error('Pull-request entity is not available. I have nowhere to comment my findings ☹️');
+	}
+
 	return await pull({
 		token,
 		user,
