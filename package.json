@@ -1,7 +1,17 @@
 {
   "name": "statistician",
-  "version": "0.4.7",
+  "version": "0.5.0",
   "description": "Create and compare files stats, and webpack bundle stats",
+  "keywords": [
+    "webpack-stats",
+    "file-size",
+    "pull-requests",
+    "package",
+    "bundle",
+    "analyze",
+    "compare-files",
+    "sizes"
+  ],
   "author": "Fiverr SRE",
   "license": "MIT",
   "repository": {
@@ -9,22 +19,26 @@
     "url": "git+https://github.com/fiverr/statistician.git"
   },
   "homepage": "https://github.com/fiverr/statistician/",
-  "main": "programs/index.js",
-  "bin": "index.js",
+  "main": "index.js",
+  "bin": "cli.js",
+  "engines": {
+    "node": ">=8"
+  },
+  "preferGlobal": true,
   "scripts": {
     "start": "node index",
-    "test": "find . | grep spec.js | grep -v node_modules | xargs mocha",
+    "test": "find . | grep spec.js | grep -v node_modules | xargs mocha --require .mochaenv.js",
     "lint": "eslint -c .eslintrc '*.js' '**/*.js' --quiet"
   },
   "dependencies": {
     "await-reduce": "^1.2.1",
     "byte-size": "^4.0.4",
     "chai": "^4.2.0",
+    "chunkalyse": "0.0.6",
     "fingerprinting": "^1.0.1",
     "index-require": "^0.1.0",
     "marked": "^0.5.1",
     "node-fetch": "^2.2.0",
-    "webpack-bundle-size-analyzer": "^2.7.0",
     "yargs": "^12.0.2"
   },
   "devDependencies": {

@@ -14,6 +14,10 @@ const UNIQUE_IDENTIFIER = Buffer.from(name).toString('base64');
  */
 module.exports = async function pull({token, user, repo, pr, message}) {
 	const {request} = new GitHub({token});
+	if (pr === true) { // `true` from yargs means an empty value (--pr --message "some message")
+		throw new Error('Pull-request entity is not available. I have nowhere to comment my findings ☹️');
+	}
+
 	const comments = await request(
 		path('repos', user, repo, 'issues', pr, 'comments')
 	);

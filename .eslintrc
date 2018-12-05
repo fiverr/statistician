@@ -1,6 +1,6 @@
 {
   "parserOptions": {
-    "ecmaVersion": 2017,
+    "ecmaVersion": 2018,
     "sourceType": "module",
     "ecmaFeatures": {
       "impliedStrict": true
@@ -21,16 +21,23 @@
   },
   "overrides": [
     {
-      "files": [ "**/spec.js" ],
+      "files": [ "**/spec.js", ".mochaenv.js" ],
       "env": {
         "mocha": true
       },
       "globals": {
         "expect": true,
-        "assert": true
+        "assert": true,
+        "clearModule": true
       },
       "rules": {
         "no-empty-function": 0,
+        "no-console": 0
+      }
+    },
+    {
+      "files": [ "**/cli.js" ],
+      "rules": {
         "no-console": 0
       }
     }
