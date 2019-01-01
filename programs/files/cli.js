@@ -26,11 +26,11 @@ module.exports = async function files({
 	return await reduce(
 		await readdir(dir),
 		async(accumulator, content) => {
-			const path = join(dir, content);
-
-			if (matchRules(path, ignore)) {
+			if (matchRules(content, ignore)) {
 				return accumulator;
 			}
+
+			const path = join(dir, content);
 
 			const stats = await stat(path);
 			if (!stats) {
