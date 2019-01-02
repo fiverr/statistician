@@ -27,7 +27,7 @@ module.exports = async({token, user, repo, pr, bundle, file}) =>  program({
 	),
 
 	// before, after
-	file: bundle && await Promise.all(
+	file: file && await Promise.all(
 		file
 			.split(',')
 			.map(
