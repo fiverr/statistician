@@ -28,7 +28,8 @@
       "globals": {
         "expect": true,
         "assert": true,
-        "clearModule": true
+        "clearModule": true,
+        "fixtures": true
       },
       "rules": {
         "no-empty-function": 0,

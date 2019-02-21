@@ -1,14 +1,9 @@
 #!/usr/bin/env node
 
-const {argv} = require('yargs');
-
-/**
- * Program names which output is required in JSON
- * @type {String[]}
- */
-const JSON_OUTPUT = [
-	'files',
-];
+const { resolve } = require('path');
+const [,, ...args] = process.argv;
+const argv = require('yargs-parser')(args);
+const { name, version } = require('./package.json');
 
 process.on('unhandledRejection', console.error);
 
@@ -17,30 +12,32 @@ process.on('unhandledRejection', console.error);
  */
 (async() => {
 	try {
-		const {_: [prog]} = argv;
-
 		if (argv.v || argv.version) {
-			return version();
+			console.log(name, version);
+			return;
 		}
 
-		const program = require(`./programs/${prog}/cli`);
+		const program = getProgram(argv);
 		const result = await program(argv);
 
-		result && console.log(
-			JSON_OUTPUT.includes(prog)
-				?
-				JSON.stringify(result, null, 2)
-				:
-				result
-		);
+		result && console.log(result);
 	} catch (error) {
 		console.error(error);
 		process.exit(1);
 	}
 })();
 
-function version() {
-	const {name, version} = require('./package.json');
-
-	console.log(name, version);
+function getProgram({_: [program]}) {
+	try {
+		const route = resolve(`./programs/${program}/cli.js`);
+		return require(route);
+	} catch (error) {
+		if (`${error.message}`.toLowerCase().includes('cannot find module')) {
+			console.error(`Can not find program "${program}"`);
+			console.error(error);
+			process.exit(1);
+		} else {
+			throw error;
+		}
+	}
 }
