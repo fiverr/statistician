@@ -32,21 +32,21 @@
     "lint": "eslint -c .eslintrc '*.js' '**/*.js' --quiet"
   },
   "dependencies": {
-    "await-reduce": "^1.2.1",
-    "byte-size": "^4.0.4",
+    "await-reduce": "^1.2.3",
+    "byte-size": "^5.0.1",
     "chai": "^4.2.0",
-    "chunkalyse": "0.0.6",
+    "chunkalyse": "^0.5.1",
     "fingerprinting": "^1.0.1",
-    "index-require": "^0.1.0",
-    "marked": "^0.5.1",
-    "node-fetch": "^2.2.0",
+    "index-require": "^1.0.0",
+    "marked": "^0.6.1",
+    "node-fetch": "^2.3.0",
     "yargs-parser": "^13.0.0"
   },
   "devDependencies": {
     "async-execute": "^1.0.1",
     "chai-string": "^1.5.0",
-    "clear-module": "^3.0.0",
-    "eslint": "^5.7.0",
-    "mocha": "^5.2.0"
+    "clear-module": "^3.1.0",
+    "eslint": "^5.14.1",
+    "mocha": "^6.0.0"
   }
 }
