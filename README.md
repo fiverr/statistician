@@ -18,7 +18,7 @@ See [webpack stats API for more details](https://webpack.js.org/api/stats/)
 ## Create file stats
 
 ```sh
-npx statistician files --dir "./dist" --ignore "\.map$" --ignore "(^|\/)\." --ignore "(^|/)node_modules\/," > files.json
+npx statistician@0 files --dir "./dist" --ignore "\.map$" --ignore "(^|\/)\." --ignore "(^|/)node_modules\/," > files.json
 ```
 
 | Option | Meaning | Example
@@ -47,7 +47,7 @@ Outputs JSON
 
 Example using CircleCI env variables
 ```sh
-npx statistician github-pull-request --file "./files-before.json,./files-after.json" --bundle "./stats-before.json,./stats-after.json" --user $CIRCLE_PROJECT_USERNAME --repo $CIRCLE_PROJECT_REPONAME --pr $(basename $CIRCLE_PULL_REQUEST) --token $GITHUB_API_TOKEN
+npx statistician@0 github-pull-request --file "./files-before.json,./files-after.json" --bundle "./stats-before.json,./stats-after.json" --user $CIRCLE_PROJECT_USERNAME --repo $CIRCLE_PROJECT_REPONAME --pr $(basename $CIRCLE_PULL_REQUEST) --token $GITHUB_API_TOKEN
 ```
 
 | Option | Meaning | Example
@@ -69,7 +69,7 @@ npx statistician github-pull-request --file "./files-before.json,./files-after.j
 ## Creates the markdown summary
 
 ```sh
-npx statistician diff-summary --file "./files-before.json,./files-after.json" --bundle "./stats-before.json,./stats-after.json"
+npx statistician@0 diff-summary --file "./files-before.json,./files-after.json" --bundle "./stats-before.json,./stats-after.json"
 ```
 
 | Option | Meaning | Example
@@ -83,7 +83,7 @@ npx statistician diff-summary --file "./files-before.json,./files-after.json" --
 ## Creates a markdown summary of all the information
 
 ```sh
-npx statistician summary --file "./files.json" --bundle "./stats.json" [--html]
+npx statistician@0 summary --file "./files.json" --bundle "./stats.json" [--html]
 ```
 
 | Option | Meaning | Example

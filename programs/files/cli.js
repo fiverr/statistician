@@ -13,7 +13,7 @@ const {
  * @param  {[String|RegExp]} [options.ignore]
  * @return {Object}
  */
-module.exports = async function files({
+async function files({
 	dir = './',
 	ignore,
 	base,
@@ -54,5 +54,7 @@ module.exports = async function files({
 			return accumulator;
 		},
 		{}
-	)
+	);
 }
+
+module.exports = async(...args) => JSON.stringify(await files(...args), null, 2);
