@@ -1,6 +1,9 @@
 describe('diff-summary', () => {
 	let diffSummary;
 	before(() => {
+		delete require.cache[require.resolve('.')];
+		delete require.cache[require.resolve('./bundles')];
+		delete require.cache[require.resolve('./files')];
 		require('chunkalyse');
 		require.cache[require.resolve('chunkalyse')].exports = input => input;
 		diffSummary = require('.');
