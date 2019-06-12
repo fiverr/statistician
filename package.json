@@ -1,6 +1,6 @@
 {
   "name": "statistician",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "description": "Create and compare files stats, and webpack bundle stats",
   "keywords": [
     "webpack-stats",
@@ -29,7 +29,7 @@
     "start": "node index",
     "stop": "./scripts/fixtures.sh",
     "test": "./scripts/test.sh",
-    "lint": "eslint -c .eslintrc '*.js' '**/*.js' --quiet"
+    "lint": "eslint -c .eslintrc '*.js' '**/*.js'"
   },
   "dependencies": {
     "await-reduce": "^1.2.3",

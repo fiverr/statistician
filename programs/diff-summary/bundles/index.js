@@ -34,17 +34,25 @@ module.exports = async function bundles(stats) {
 }
 
 const compare = (before, after) => keys(before, after).reduce(
-	(accumulator, name) => accumulator.concat([
-		`### ${name}`,
-		row([
-			'Module',
-			`Before (${byteSize(getSize(before[name]))})`,
-			`After (${byteSize(getSize(after[name]))})`,
-			diff(getSize(before[name]), getSize(after[name])),
-		]),
-		row([...new Array(4).fill('-')]),
-		...modules(before[name], after[name]),
-	]),
+	(accumulator, name) => {
+		const rows = modules(before[name], after[name]);
+
+		if (!rows.length) {
+			return accumulator;
+		}
+
+		return accumulator.concat([
+			`### ${name}`,
+			row([
+				'Module',
+				`Before (${byteSize(getSize(before[name]))})`,
+				`After (${byteSize(getSize(after[name]))})`,
+				diff(getSize(before[name]), getSize(after[name])),
+			]),
+			row([...new Array(4).fill('-')]),
+			...rows,
+		])
+	},
 	[]
 );
 
