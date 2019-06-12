@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const { resolve } = require('path');
+const { join } = require('path');
 const [,, ...args] = process.argv;
 const argv = require('yargs-parser')(args);
 const { name, version } = require('./package.json');
@@ -29,7 +29,7 @@ process.on('unhandledRejection', console.error);
 
 function getProgram({_: [program]}) {
 	try {
-		const route = resolve(`./programs/${program}/cli.js`);
+		const route = join(__dirname, `programs/${program}/cli.js`);
 		return require(route);
 	} catch (error) {
 		if (`${error.message}`.toLowerCase().includes('cannot find module')) {

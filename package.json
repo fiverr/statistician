@@ -1,6 +1,6 @@
 {
   "name": "statistician",
-  "version": "0.5.4",
+  "version": "0.5.5",
   "description": "Create and compare files stats, and webpack bundle stats",
   "keywords": [
     "webpack-stats",
