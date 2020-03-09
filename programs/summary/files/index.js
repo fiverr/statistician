@@ -18,7 +18,7 @@ module.exports = async data => sortBy(
 			[name, byteSize(size)],
 		],
 		[
-			['File', 'size (gzip)'],
+			['File', 'size'],
 			[...new Array(2).fill('-')],
 		]
 	)
