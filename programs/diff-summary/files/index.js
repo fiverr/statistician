@@ -26,7 +26,6 @@ module.exports = async function files([before, after]) {
 	return [
 		'## Impacted files',
 		filesTable,
-		'> <sup>measured after gzip</sup>',
 	].join('\n');
 };
 

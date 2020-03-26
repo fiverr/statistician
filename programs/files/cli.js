@@ -1,7 +1,6 @@
 const {join} = require('path');
 const reduce = require('await-reduce');
 const {
-	gzipSize,
 	removeFingerprint,
 	afsync: { readdir, stat },
 	matches: { ignoreRules, matchRules },
@@ -44,7 +43,7 @@ async function files({
 				);
 			} else if (stats.isFile()) {
 				const name = await removeFingerprint(path);
-				const size = await gzipSize(path);
+				const { size } = stats;
 				Object.assign(
 					accumulator,
 					{[name.replace(rembase, '')]: size}
