@@ -1,6 +1,6 @@
 {
   "name": "statistician",
-  "version": "0.5.6",
+  "version": "0.5.7",
   "description": "Create and compare files stats, and webpack bundle stats",
   "keywords": [
     "webpack-stats",
@@ -29,6 +29,7 @@
     "start": "node index",
     "stop": "./scripts/fixtures.sh",
     "test": "./scripts/test.sh",
+    "test-single": "mocha --require .mochaenv.js",
     "lint": "eslint -c .eslintrc '*.js' '**/*.js'"
   },
   "dependencies": {
