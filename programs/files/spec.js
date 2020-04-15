@@ -17,7 +17,7 @@ describe('files', function() {
 		})
 	});
 
-    it('Should exclude the hash from file sizes', async () => {
+    it('Should exclude fingerprints from file names in file summary', async () => {
         const result = await execute('./cli.js files --dir "./fixtures/files/hashed_files"');
 
         Object.keys(JSON.parse(result)).forEach(filename => {
