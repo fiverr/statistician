@@ -53,7 +53,8 @@ workflows:
   version: 2
   delivery:
     jobs:
-      - dependencies
+      - dependencies:
+            context: org-global
       - test:
           requires:
             - dependencies
