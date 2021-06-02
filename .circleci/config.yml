@@ -54,7 +54,7 @@ workflows:
   delivery:
     jobs:
       - dependencies:
-            context: org-global
+          context: org-global
       - test:
           requires:
             - dependencies
