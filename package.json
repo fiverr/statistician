@@ -26,7 +26,7 @@
   },
   "preferGlobal": true,
   "scripts": {
-    "start": "node index",
+    "start": "node index.js",
     "stop": "./scripts/fixtures.sh",
     "test": "./scripts/test.sh",
     "test-single": "mocha --require .mochaenv.js",
