@@ -42,7 +42,7 @@ module.exports = async({token, user, repo, pr, bundle, file, appId, appPrivateKe
 
 	const appToken = await app({
 		appId,
-		appPrivateKey
+		appPrivateKey,
 	});
 
 	return await pull({
