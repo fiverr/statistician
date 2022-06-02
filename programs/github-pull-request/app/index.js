@@ -1,4 +1,4 @@
-const GitHubApp = require('../../../lib/GitHubApp');
+const GitHubApp = require('../../../lib/GithubApp');
 
 /**
  * Get a github app installation token.
