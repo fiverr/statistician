@@ -57,7 +57,7 @@ workflows:
           context: org-global
       - test:
           requires:
-            - dependencies
+            - install
       - publish:
           context: org-global
           requires:
