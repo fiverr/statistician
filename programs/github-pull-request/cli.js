@@ -4,6 +4,8 @@ const getJSON = require('../../lib/getJSON');
 /**
  * Create a pull request with the file and bundle stats comparison
  * @param  {String} options.token
+ * @param  {String} options.appId
+ * @param  {String} options.appPrivateKey
  * @param  {String} options.user
  * @param  {String} options.repo
  * @param  {String} options.pr
@@ -11,8 +13,10 @@ const getJSON = require('../../lib/getJSON');
  * @param  {String} options.file
  * @return {Object}
  */
-module.exports = async({token, user, repo, pr, bundle, file}) =>  program({
+module.exports = async({token, user, repo, pr, bundle, file, appId, appPrivateKey}) =>  program({
 	token,
+	appId,
+	appPrivateKey,
 	user,
 	repo,
 	pr,
