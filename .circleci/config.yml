@@ -5,7 +5,7 @@ defaults: &defaults
 
 version: 2
 jobs:
-  dependencies:
+  install:
     <<: *defaults
     steps:
       - checkout
@@ -53,7 +53,7 @@ workflows:
   version: 2
   delivery:
     jobs:
-      - dependencies
+      - install:
           context: org-global
       - test:
           requires:
