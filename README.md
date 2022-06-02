@@ -50,6 +50,11 @@ Example using CircleCI env variables
 npx statistician@0 github-pull-request --file "./files-before.json,./files-after.json" --bundle "./stats-before.json,./stats-after.json" --user $CIRCLE_PROJECT_USERNAME --repo $CIRCLE_PROJECT_REPONAME --pr $(basename $CIRCLE_PULL_REQUEST) --token $GITHUB_API_TOKEN
 ```
 
+or with Gith App authentication
+```sh
+npx statistician@0 github-pull-request --file "./files-before.json,./files-after.json" --bundle "./stats-before.json,./stats-after.json" --user $CIRCLE_PROJECT_USERNAME --repo $CIRCLE_PROJECT_REPONAME --pr $(basename $CIRCLE_PULL_REQUEST) --appId $GITHUB_APP_ID --appPrivateKey $GITHUB_APP_PRIVATE_KEY
+```
+
 | Option | Meaning | Example
 | - | - | -
 | file | pair of file stats to compare (comma separated) | `--file "./files-before.json,./files-after.json"`
