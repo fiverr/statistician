@@ -58,6 +58,13 @@ npx statistician@0 github-pull-request --file "./files-before.json,./files-after
 | repo | Name of repository | `--repo some-package`
 | pr | Pull request number | `--pr 24`
 | token | [GitHub API Token](https://github.com/settings/tokens) | `--token s4f5ybwne84bodafzopayrtjrc2koa2k4qb3y1wp`
+| appId | [GitHub AppID](https://docs.github.com/en/developers/apps/getting-started-with-apps/about-apps) | `206123`
+| appPrivateKey | [GitHub App Private Key](https://docs.github.com/en/developers/apps/building-github-apps/authenticating-with-github-apps#authenticating-as-a-github-app) | `-----BEGIN RSA PRIVATE KEY----- \n ABXEogIBCDSKCAQEA1....`
+
+
+> Two ways of authentication are available.
+> - Use a personal access token - in this case you will provide the `token` but you don't need to provide `appId` and `appPrivateKey`.
+> - Use a Github application - in this case, you will provide `appId` and `appPrivateKey` but you don't need to provide `token`.
 
 ## Pull request comment example
 
