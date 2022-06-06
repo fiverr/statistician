@@ -21,9 +21,9 @@ describe('github-pull-request', () => {
 	let githubPullRequest;
 	before(() => {
 		require('./pull');
-		require('./app');
+		require('./getGithubAppUserToken');
 		require.cache[require.resolve('./pull')].exports = _args => { argsPull = _args; };
-		require.cache[require.resolve('./app')].exports = _args => { argsApp = _args };
+		require.cache[require.resolve('./getGithubAppUserToken')].exports = _args => { argsApp = _args };
 		githubPullRequest = require('.');
 	});
 	beforeEach(() => {
@@ -32,13 +32,13 @@ describe('github-pull-request', () => {
 	});
 	after(() => {
 		delete require.cache[require.resolve('./pull')];
-		delete require.cache[require.resolve('./app')];
+		delete require.cache[require.resolve('./getGithubAppUserToken')];
 	});
 	it('Should pass token, user, repo, pr, to pull request function', async() => {
 		await githubPullRequest(DEFAULT_ARGS);
 		expect(argsPull).to.include(PULL_ARGS);
 	});
-	it('Should pass appId, appPrivateKey, to token app function', async() => {
+	it('Should pass appId, appPrivateKey, to getGithubAppUserToken function', async() => {
 		await githubPullRequest(DEFAULT_ARGS);
 		expect(argsApp).to.include(APP_ARGS);
 	});

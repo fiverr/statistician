@@ -1,5 +1,5 @@
 const diffSummary = require('../diff-summary');
-const app = require('./app');
+const getGithubAppUserToken = require('./getGithubAppUserToken');
 const pull = require('./pull');
 
 /**
@@ -40,13 +40,13 @@ module.exports = async({token, user, repo, pr, bundle, file, appId, appPrivateKe
 		throw new Error('Pull-request entity is not available. I have nowhere to comment my findings ☹️');
 	}
 
-	const appToken = await app({
+	const githubAppUserToken = await getGithubAppUserToken({
 		appId,
 		appPrivateKey,
 	});
 
 	return await pull({
-		token: token || appToken,
+		token: token || githubAppUserToken,
 		user,
 		repo,
 		pr,
