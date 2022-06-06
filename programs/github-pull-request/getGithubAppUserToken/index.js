@@ -13,6 +13,6 @@ module.exports = async function getGithubAppUserToken({appId, appPrivateKey}) {
 
     return new GitHubApp({
         appId,
-        appPrivateKey: Buffer.from(appPrivateKey, 'base64').toString(),
+        appPrivateKey,
     }).getUserToken();
 };
