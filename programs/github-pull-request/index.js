@@ -1,5 +1,5 @@
+const GitHubApp = require('../../lib/GithubApp');
 const diffSummary = require('../diff-summary');
-const getGithubAppUserToken = require('./getGithubAppUserToken');
 const pull = require('./pull');
 
 /**
@@ -20,18 +20,7 @@ module.exports = async({token, user, repo, pr, bundle, file, appId, appPrivateKe
 			'GitHub variables must be strings or numbers.',
 			'Instead got',
 			JSON.stringify({user, repo, pr}),
-		].join(' '))
-	}
-
-	if (
-		[token].filter(notStringNorNumber).length &&
-		[appId, appPrivateKey].filter(notStringNorNumber).length
-	) {
-		throw new Error([
-			'GitHub authentication variables must be strings or numbers.',
-			'Instead got',
-			JSON.stringify({token, appId, appPrivateKey}),
-		].join(' '))
+		].join(' '));
 	}
 
 	const message = await diffSummary({bundle, file});
@@ -40,13 +29,23 @@ module.exports = async({token, user, repo, pr, bundle, file, appId, appPrivateKe
 		throw new Error('Pull-request entity is not available. I have nowhere to comment my findings ☹️');
 	}
 
-	const githubAppUserToken = await getGithubAppUserToken({
-		appId,
-		appPrivateKey,
-	});
+	if(!token) {
+		token = await new GitHubApp({
+			appId,
+			appPrivateKey,
+		}).getUserToken();
+	}
+
+	if (!token) {
+		throw new Error([
+			'GitHub authentication variables must be strings or numbers.',
+			'Instead got',
+			JSON.stringify({token, appId, appPrivateKey}),
+		].join(' '));
+	}
 
 	return await pull({
-		token: token || githubAppUserToken,
+		token,
 		user,
 		repo,
 		pr,

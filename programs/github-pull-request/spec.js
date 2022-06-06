@@ -1,3 +1,5 @@
+const GitHubApp = require('../../lib/GithubApp');
+
 const APP_ARGS = {
 	appId: 'APP_ID',
 	appPrivateKey: 'APP_PRIVATE_KEY',
@@ -17,30 +19,39 @@ const DEFAULT_ARGS = {
 
 describe('github-pull-request', () => {
 	let argsPull;
-	let argsApp;
+	let getUserTokenCalled;
+	let originalGetUserToken;
 	let githubPullRequest;
 	before(() => {
 		require('./pull');
-		require('./getGithubAppUserToken');
 		require.cache[require.resolve('./pull')].exports = _args => { argsPull = _args; };
-		require.cache[require.resolve('./getGithubAppUserToken')].exports = _args => { argsApp = _args };
+
+		originalGetUserToken = GitHubApp.prototype.getUserToken;
+		GitHubApp.prototype.getUserToken = () => { getUserTokenCalled = true; return 'TOKEN' };
+
 		githubPullRequest = require('.');
 	});
 	beforeEach(() => {
 		argsPull = {};
-		argsApp = {};
+		getUserTokenCalled = false;
 	});
 	after(() => {
 		delete require.cache[require.resolve('./pull')];
-		delete require.cache[require.resolve('./getGithubAppUserToken')];
+
+		GitHubApp.prototype.getUserToken = originalGetUserToken;
 	});
 	it('Should pass token, user, repo, pr, to pull request function', async() => {
 		await githubPullRequest(DEFAULT_ARGS);
 		expect(argsPull).to.include(PULL_ARGS);
 	});
-	it('Should pass appId, appPrivateKey, to getGithubAppUserToken function', async() => {
-		await githubPullRequest(DEFAULT_ARGS);
-		expect(argsApp).to.include(APP_ARGS);
+	describe('When token is undefined', () => {
+		it('Should call GitHubApp#getUserToken', async() => {
+			await githubPullRequest({
+				...DEFAULT_ARGS,
+				token: undefined,
+			});
+			expect(getUserTokenCalled).to.equal(true);
+		});
 	});
 	it('Should report no file size impact', async() => {
 		await githubPullRequest(DEFAULT_ARGS);
