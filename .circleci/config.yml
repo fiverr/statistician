@@ -1,11 +1,11 @@
 defaults: &defaults
   working_directory: ~/app
   docker:
-    - image: circleci/node:8
+    - image: cimg/node:14.19
 
 version: 2
 jobs:
-  dependencies:
+  install:
     <<: *defaults
     steps:
       - checkout
@@ -53,10 +53,12 @@ workflows:
   version: 2
   delivery:
     jobs:
-      - dependencies
+      - install:
+          context: org-global
       - test:
+          context: org-global
           requires:
-            - dependencies
+            - install
       - publish:
           context: org-global
           requires:

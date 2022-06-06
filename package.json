@@ -1,6 +1,6 @@
 {
   "name": "statistician",
-  "version": "0.5.7",
+  "version": "0.6.0",
   "description": "Create and compare files stats, and webpack bundle stats",
   "keywords": [
     "webpack-stats",
@@ -22,11 +22,11 @@
   "main": "index.js",
   "bin": "cli.js",
   "engines": {
-    "node": ">=8"
+    "node": ">=14"
   },
   "preferGlobal": true,
   "scripts": {
-    "start": "node index",
+    "start": "node index.js",
     "stop": "./scripts/fixtures.sh",
     "test": "./scripts/test.sh",
     "test-single": "mocha --require .mochaenv.js",
@@ -39,6 +39,7 @@
     "chunkalyse": "^0.5.1",
     "fingerprinting": "^1.0.1",
     "index-require": "^1.0.0",
+    "jsonwebtoken": "^8.5.1",
     "marked": "^0.6.1",
     "node-fetch": "^2.3.0",
     "yargs-parser": "^13.0.0"
