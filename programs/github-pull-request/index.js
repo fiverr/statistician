@@ -10,11 +10,12 @@ const pull = require('./pull');
  * @param  {String} options.user
  * @param  {String} options.repo
  * @param  {String} options.pr
+ * @param  {String} options.projectName
  * @param  {Array} options.bundle Two objects (before, after)
  * @param  {Array} options.file   Two objects (before, after)
  * @return {Object}
  */
-module.exports = async({token, user, repo, pr, bundle, file, appId, appPrivateKey}) => {
+module.exports = async({token, user, repo, pr, bundle, file, appId, appPrivateKey, projectName}) => {
 	if ([user, repo, pr].filter(notStringNorNumber).length) {
 		throw new Error([
 			'GitHub variables must be strings or numbers.',
@@ -23,7 +24,7 @@ module.exports = async({token, user, repo, pr, bundle, file, appId, appPrivateKe
 		].join(' '));
 	}
 
-	const message = await diffSummary({bundle, file});
+	const message = await diffSummary({bundle, file, projectName});
 
 	if (pr === true) { // `true` from yargs means an empty value (--pr --message "some message")
 		throw new Error('Pull-request entity is not available. I have nowhere to comment my findings ☹️');
