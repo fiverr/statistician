@@ -20,7 +20,7 @@ module.exports = async({bundle, file, html, projectName} = {}) => {
 	const diffTitle = !result.length ? 'No file size impact detected'
 			: [
 					'# File sizes impact summary',
-					projectName ? `(${projectName})` : false
+					projectName ? `(${projectName})` : false,
 			].filter(Boolean).join('');
 
 	result.unshift(
