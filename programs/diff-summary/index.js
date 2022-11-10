@@ -4,6 +4,15 @@ const bundles = require('./bundles');
 const files = require('./files');
 
 /**
+ * Formats a given project name expected to be at under_score format.
+ * @param projectName
+ * @returns {string}
+ */
+const formatProjectName = (projectName = '') => projectName.split('_')
+		.map((part) => [part[0].toUpperCase(), part.slice(1).toLowerCase()].join('') )
+		.join(' ');
+
+/**
  * Create the markdown for the pull request
  * @param  {Array} [options.bundle] Two objects (before, after)
  * @param  {Array} [options.files]  Two objects (before, after)
@@ -20,7 +29,7 @@ module.exports = async({bundle, file, html, projectName} = {}) => {
 	const diffTitle = !result.length ? 'No file size impact detected'
 			: [
 					'# File sizes impact summary',
-					projectName ? `(${projectName})` : false,
+					projectName ? ` (${formatProjectName(projectName)})` : false,
 			].filter(Boolean).join('');
 
 	result.unshift(
