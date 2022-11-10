@@ -49,6 +49,7 @@ module.exports = async({token, user, repo, pr, bundle, file, appId, appPrivateKe
 		token,
 		user,
 		repo,
+    projectName,
 		pr,
 		message,
 	});
