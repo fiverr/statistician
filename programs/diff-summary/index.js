@@ -8,8 +8,8 @@ const files = require('./files');
  * @param projectName
  * @returns {string}
  */
-const formatProjectName = projectName => projectName.split('_')
-		.map((part) => [part[0].toUpperCase(), part.slice(1).toLowerCase()].join('') )
+const formatProjectName = (projectName = '') => projectName.split('_')
+		.map(part => [part[0].toUpperCase(), part.slice(1).toLowerCase()].join(''))
 		.join(' ');
 
 /**
