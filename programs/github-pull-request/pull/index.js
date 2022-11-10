@@ -7,11 +7,11 @@ const {name} = require('../../../package.json');
  * @param repo
  * @param projectName
  */
-const getCommentIdentifier = ({ repo, projectName }) => Buffer.from([
+const getCommentIdentifier = ({ repo, projectName }) => Buffer.from(projectName ? [
 		name,
 		repo,
 		projectName,
-].filter(Boolean).join('-')).toString('base64');
+].filter(Boolean).join('-') : name).toString('base64');
 
 /**
  * Create a pull request with the file and bundle stats comparison
