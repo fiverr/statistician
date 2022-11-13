@@ -11,15 +11,17 @@ const getJSON = require('../../lib/getJSON');
  * @param  {String} options.pr
  * @param  {String} options.bundle
  * @param  {String} options.file
+ * @param  {String} options.projectName
  * @return {Object}
  */
-module.exports = async({token, user, repo, pr, bundle, file, appId, appPrivateKey}) =>  program({
+module.exports = async({token, user, repo, pr, bundle, file, appId, appPrivateKey, projectName}) =>  program({
 	token,
 	appId,
 	appPrivateKey,
 	user,
 	repo,
 	pr,
+  projectName,
 
 	// before, after
 	bundle: bundle && await Promise.all(

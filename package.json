@@ -1,6 +1,6 @@
 {
   "name": "statistician",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Create and compare files stats, and webpack bundle stats",
   "keywords": [
     "webpack-stats",
@@ -42,7 +42,7 @@
     "jsonwebtoken": "^8.5.1",
     "marked": "^0.6.1",
     "node-fetch": "^2.3.0",
-    "yargs-parser": "^13.0.0"
+    "yargs-parser": "^21.0.1"
   },
   "devDependencies": {
     "async-execute": "^1.0.1",
