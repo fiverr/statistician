@@ -12,8 +12,8 @@ describe('diff-summary', () => {
 		delete require.cache[require.resolve('chunkalyse')];
 	});
 
-	it('Should report no file size impact', async() => {
-		expect(await diffSummary()).to.equalIgnoreCase('No file size impact detected')
+	it('Should be empty when no file size impact', async() => {
+		expect(await diffSummary()).to.equal('')
 	});
 	it('Should compare files', async() => {
 		const result = await diffSummary({file: [fixtures.files.before, fixtures.files.after]});

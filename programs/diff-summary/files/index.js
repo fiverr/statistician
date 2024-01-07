@@ -2,9 +2,6 @@ const markdown = require('./markdown');
 const deepEqual = require('../../../lib/deepEqual');
 const keys = require('../../../lib/keys');
 
-const NO_CHANGES = 'Files unchanged';
-const INSIGNIFICANT = 'No significant file changes';
-
 /**
  * Create the markdown section for files
  * @param  {String} files
