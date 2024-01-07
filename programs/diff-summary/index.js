@@ -26,7 +26,7 @@ module.exports = async({bundle, file, html, projectName} = {}) => {
 	bundle && result.push(await bundles(bundle));
 	file && result.push(await files(file));
 
-	if (result.length === 0) {
+	if (!result.some(res => res)) {
 		return '';
 	}
 
