@@ -26,11 +26,14 @@ module.exports = async({bundle, file, html, projectName} = {}) => {
 	bundle && result.push(await bundles(bundle));
 	file && result.push(await files(file));
 
-	const diffTitle = !result.length ? 'No file size impact detected'
-			: [
-					'# File sizes impact summary',
-					projectName ? ` (${formatProjectName(projectName)})` : false,
-			].filter(Boolean).join('');
+	if (result.length === 0) {
+		return '';
+	}
+
+	const diffTitle = [
+		'# File sizes impact summary',
+		projectName ? ` (${formatProjectName(projectName)})` : false,
+	].filter(Boolean).join('');
 
 	result.unshift(
 			diffTitle.trim()

@@ -12,7 +12,7 @@ const INSIGNIFICANT = 'No significant file changes';
  */
 module.exports = async function files([before, after]) {
 	if (deepEqual(before, after)) {
-		return NO_CHANGES;
+		return;
 	}
 
 	const comparison = compare(before, after);
@@ -20,7 +20,7 @@ module.exports = async function files([before, after]) {
 	const filesTable = markdown(comparison);
 
 	if (!filesTable) {
-		return INSIGNIFICANT;
+		return;
 	}
 
 	return [
