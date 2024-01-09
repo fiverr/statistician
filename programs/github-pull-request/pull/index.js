@@ -41,16 +41,23 @@ module.exports = async function pull({token, user, repo, pr, message, projectNam
 		path('repos', user, repo, 'issues', 'comments', id) :
 		path('repos', user, repo, 'issues', pr, 'comments');
 
+	if (!message && !id) {
+		return;
+	}
+
+	const method = id ? !message ? 'DELETE': 'PATCH' : 'POST';
+	const body = !message ? undefined : JSON.stringify({
+		body: [
+			`<!-- ${commentIdentifier} -->`,
+			message,
+		].join('\n'),
+	});
+
 	return await request(
 		url,
 		{
-			method: id ? 'PATCH' : 'POST',
-			body: JSON.stringify({
-				body: [
-					`<!-- ${commentIdentifier} -->`,
-					message,
-				].join('\n'),
-			}),
+			method,
+			body,
 		}
 	);
 }
