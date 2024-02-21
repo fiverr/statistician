@@ -1,6 +1,6 @@
 {
   "name": "statistician",
-  "version": "1.0.0",
+  "version": "1.1.0-rc.failOnIncrease.1",
   "description": "Create and compare files stats, and webpack bundle stats",
   "keywords": [
     "webpack-stats",

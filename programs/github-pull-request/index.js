@@ -11,11 +11,12 @@ const pull = require('./pull');
  * @param  {String} options.repo
  * @param  {String} options.pr
  * @param  {String} options.projectName
+ * @param  {boolean} options.failOnSizeIncrease (optional) - fail the build if the size increase more than 5%
  * @param  {Array} options.bundle Two objects (before, after)
  * @param  {Array} options.file   Two objects (before, after)
  * @return {Object}
  */
-module.exports = async({token, user, repo, pr, bundle, file, appId, appPrivateKey, projectName}) => {
+module.exports = async({token, user, repo, pr, bundle, file, appId, appPrivateKey, projectName, failOnSizeIncrease}) => {
 	if ([user, repo, pr].filter(notStringNorNumber).length) {
 		throw new Error([
 			'GitHub variables must be strings or numbers.',
@@ -45,7 +46,7 @@ module.exports = async({token, user, repo, pr, bundle, file, appId, appPrivateKe
 		].join(' '));
 	}
 
-	return await pull({
+	await pull({
 		token,
 		user,
 		repo,
@@ -53,6 +54,10 @@ module.exports = async({token, user, repo, pr, bundle, file, appId, appPrivateKe
 		pr,
 		message,
 	});
+
+	if (failOnSizeIncrease && global.sizeIncrease) {
+		throw new Error('Bundle size increased');
+	}
 };
 
 /**
