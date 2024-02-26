@@ -12,16 +12,18 @@ const getJSON = require('../../lib/getJSON');
  * @param  {String} options.bundle
  * @param  {String} options.file
  * @param  {String} options.projectName
+ * @param  {boolean} options.failOnSizeIncrease (optional) - fail the build if the size increase more than 5%
  * @return {Object}
  */
-module.exports = async({token, user, repo, pr, bundle, file, appId, appPrivateKey, projectName}) =>  program({
+module.exports = async ({ token, user, repo, pr, bundle, file, appId, appPrivateKey, projectName, failOnSizeIncrease }) => program({
 	token,
 	appId,
 	appPrivateKey,
 	user,
 	repo,
 	pr,
-  projectName,
+	projectName,
+	failOnSizeIncrease,
 
 	// before, after
 	bundle: bundle && await Promise.all(
