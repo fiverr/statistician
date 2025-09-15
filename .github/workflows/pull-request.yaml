@@ -1,0 +1,14 @@
+---
+name: Pull Request Validation
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  validate:
+    uses: fiverr/github_workflows/.github/workflows/pull-request.yaml@master
+    secrets:
+      GITHUBOT_TOKEN: ${{ secrets.GITHUBOT_TOKEN }}
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
